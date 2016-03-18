@@ -1,4 +1,14 @@
 #!/bin/bash
+
+file="/tmp/.X??-lock"
+
+echo "Looking for lock file: $file"
+if [ -f $file ] ; then
+    echo "Lock file: $file FOUND"
+    rm $file
+    echo "Lock file: $file REMOVED"
+fi
+
 export GEOMETRY="$SCREEN_WIDTH""x""$SCREEN_HEIGHT""x""$SCREEN_DEPTH"
 
 if [ ! -e /opt/selenium/config.json ]; then

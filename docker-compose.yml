@@ -1,0 +1,24 @@
+hub:
+  image: registry.aliyuncs.com/denverdino/selenium-hub
+  ports:
+    - 4444:4444
+  labels:
+    aliyun.routing.port_4444: http://selenium/
+firefox:
+  image: registry.aliyuncs.com/denverdino/selenium-node-firefox
+  links:
+    - hub
+  labels: 
+    aliyun.scale: "3"
+chrome:
+  image: registry.aliyuncs.com/denverdino/selenium-node-chrome
+  links:
+    - hub
+  labels: 
+    aliyun.scale: "3"
+test:
+  image: registry.aliyuncs.com/denverdino/selenium-test
+  links:
+    - hub
+    - firefox
+    - chrome
